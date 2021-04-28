@@ -20,13 +20,18 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
 
-        guard let videoUrl: URL = URL(string: "http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8") else {
-            return
-        }
+//        guard let videoUrl: URL = URL(string: "http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8") else {
+//            return
+//        }
+        
+        guard let path = Bundle.main.path(forResource: "testVideo", ofType:"mp4") else {
+                    debugPrint("video.m4v not found")
+                    return
+                }
 
         if videoPlayer == nil {
             videoPlayer = VideoPlayer()
-            videoPlayer?.loadContentURL(url: videoUrl)
+            videoPlayer?.loadContentURL(url: URL(fileURLWithPath: path))
             createAdLabel()
             renderVideoPlayer()
         }
